@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Devipuram</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="image">Thumbnail</string>
+     <string name="cal_title">Announcements</string>
+
+  <string name="channels">Channels</string>
+    <string name="logs">Logs</string>
+  <string name="num_channels">5</string>
+  <string name="login_button">Login</string>
+  <string name="share_button">Share</string>
+  <string name="donate_button">Donate</string>
+  <string name="classmates_button">Classmates</string>
+  <string name="progress_button">How am I doing</string>
+  <string name="placeholder">This is a placeholder</string>
+  <string name="dialog_message">You have to complete Lesson# %1$d to take Lesson# %2$d</string>
+  <string name="dialog_title">Alert</string>
+  <string name="ok">OK</string>
+     <string name="dialog_cl_message">Congratulations! You have now enrolled for the course. You will get notification for your first lesson in less than a minute.</string>
+  <string name="dialog_cl_title">Course Launch</string>
+  <string name="got_it">Got It!</string>
+   <string name="course_launch_heading">Course Launch</string>
+   <string name="what_heading">What do I learn?</string>
+   <string name="time_heading">What does it take to learn?</string>
+   <string name="how_heading">How is it taught?</string>
+   <string name="what_detail">Realize who you are through worship of Shakti</string>
+   <string name="time_detail">Typically it takes not more than 30 mins/day for 3 weeks to gain through this course.</string>
+   <string name="how_detail">Video and audio lectures featuring your Guruji will be delivered to your app. Auxiliary reading material will be provided.</string>
+   <string name="subscribe_button">Okay! Subscribe</string>     
+    <string name="notify_title">SriVidya</string> 
+    <string name="notify_text">Lesson #1 of Srividya course is downloaded for you. Click here to take your lesson.</string>  
+    <string name="previous">Previous</string>  
+    <string name="next">Next</string>     
+    
+</resources>
