@@ -58,7 +58,7 @@
     <activity android:name="LogScrollActivity" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden"></activity>
    <activity android:name="AudioPlayerActivity" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden"></activity>
      
-   <activity android:name="VideoPlayerActivity" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden"></activity>
+   <activity android:name="VideoPlayerActivity" android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden"></activity>
       
      <activity android:name="LearningActivity" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden">
             

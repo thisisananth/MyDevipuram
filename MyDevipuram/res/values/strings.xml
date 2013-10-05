@@ -5,9 +5,16 @@
     <string name="action_settings">Settings</string>
     
     <string name="image">Thumbnail</string>
-     <string name="cal_title">Announcements</string>
-
+    <string name="srividya">Sri Vidya</string>
+     <string name="course_title"> online course - Basic Level</string>
+     <string name="featured_stories">Featured Stories</string>
+     <string name="lesson_title">Message from Guruji</string>
+     <string name="course_title_1">Worship of Shakti</string>
+	<string name="launch_course">Launch Course</string>
+     
   <string name="channels">Channels</string>
+  <string name="browse">Browse Lesson</string>
+  <string name="announcements">Announcements</string>
     <string name="logs">Logs</string>
   <string name="num_channels">5</string>
   <string name="login_button">Login</string>
