@@ -22,13 +22,32 @@
     </style> 
     <style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">     
         <item name="android:background">@color/titlebackgroundcolor</item>
+         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+      	<item name="android:showDividers">beginning</item>
+    	<item name="android:divider">@drawable/header_ver_line</item>
+        
     </style>
- 
+    
+    
+    
+  
+
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText"
+           parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/actionBarTextColor</item>
+    </style>
+
+  
+    
    <style name="WindowTitleBackground">     
         <item name="android:background">@color/titlebackgroundcolor</item>                   
     </style>
 
    <color name="titlebackgroundcolor">#B31E00</color>
+   <color name="actionBarTextColor">#FFFFFF</color>
+    <color name="lessonTextColor">#CCCCCC</color>
+     <color name="pageCounterTextColor">#262626</color>
    
 
 </resources>

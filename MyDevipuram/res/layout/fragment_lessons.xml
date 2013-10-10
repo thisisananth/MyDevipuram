@@ -1,68 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/playerControl"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:background="@drawable/video_snapshot"
+    android:gravity="top"
     android:orientation="vertical" >
     
-     <RelativeLayout
-         android:id="@+id/playerControl"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" >
+    <Button
+             android:id="@+id/playPause"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+            
+             
+             android:layout_centerInParent="true"
+            
+             android:minHeight="0dp"
+             android:minWidth="0dp"
+             />
+   
         
-     <Button
+     <TextView
          android:id="@+id/lessonNumber"
-        
-        android:layout_width="wrap_content"
+        android:background="@drawable/lesson_bg"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        
-        android:width="200dp"
-        android:height="60dp"
-         android:textSize="20sp"
+        android:textColor="@color/lessonTextColor"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
          
           />
-       
-    </RelativeLayout>
-    
+     
+     
+     
 
-   
-    <Button
-        android:id="@+id/button1"
+     <RelativeLayout
+         android:id="@+id/viewControl"
+         android:layout_width="wrap_content"
+         android:layout_height="50dp"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:background="@drawable/bottom_navigation_bg" >
+		<TextView
+             android:id="@+id/pageCounter"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentLeft="true"
+             android:layout_alignTop="@+id/previous"
+             android:layout_marginLeft="20dp"
+             android:gravity="center"
+             android:background="@drawable/pagecounter"
+             android:textColor="@color/pageCounterTextColor" />
+         
+         <Button
+             android:id="@+id/previous"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+            
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="20dp"
+             android:layout_toRightOf="@id/pageCounter"
+             android:background="@drawable/back_btn"
+             android:minHeight="0dp"
+             android:minWidth="0dp"
+             />
+         
+         
+   <!--     <LinearLayout android:layout_width="wrap_content" 
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:layout_centerInParent="true">
+             
+             <ImageView   android:layout_width="100dp"
+        android:layout_height="30dp"
         
-        android:layout_width="wrap_content"
+        android:src="@drawable/progress_complect"
+        android:contentDescription="complete"/>
+               <ImageView   android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/share_button"
-        android:width="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/button2" />
+        
+        android:src="@drawable/slider"
+        android:contentDescription="slider"/>
+                 <ImageView   android:layout_width="200dp"
+        android:layout_height="30dp"
+        
+        android:src="@drawable/progress_incomplect"
+        android:contentDescription="incomplete"/>
+             
+             
+         </LinearLayout>  --> 
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/donate_button"
-        android:width="200dp"
-        android:layout_above="@+id/button3" 
-         android:layout_centerHorizontal="true" />
+         <Button
+             android:id="@+id/next"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="20dp"
+             android:layout_toLeftOf="@+id/fullscreen"
+             android:background="@drawable/next_btn"
+             android:gravity="center_vertical"
+             android:minHeight="0dp"
+             android:minWidth="0dp"
+              />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/classmates_button"
-        android:width="200dp"
-        android:layout_above="@+id/button4" 
-         android:layout_centerHorizontal="true" />
+         
+         <Button
+             android:id="@+id/fullscreen"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="20dp"
+             android:background="@drawable/bigscreen_btn"
+             android:gravity="right|center_vertical"
+             android:minHeight="0dp"
+             android:minWidth="0dp"
+              />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/progress_button"
-        android:width="200dp"
-        android:layout_alignParentBottom="true"
-          android:layout_centerHorizontal="true" />
-
+     </RelativeLayout>
     
 </RelativeLayout>

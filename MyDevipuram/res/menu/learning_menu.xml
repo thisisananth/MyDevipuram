@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+     <item android:id="@+id/menu_item_share"
+    android:icon="@drawable/share_btn"
+    android:title="@string/share"
+    android:showAsAction="ifRoom"
+    
+   
+    />
+     
+      <item android:id="@+id/menu_item_more"
+    android:icon="@drawable/more_btn"
+    android:title="@string/donate"
+    android:showAsAction="ifRoom">
+    
+     <menu
+         >
+            <item android:id="@+id/donate"
+                  android:title="@string/donate_button" />
+            <item android:id="@+id/classmates"
+                  android:title="@string/classmates_button" />
+            <item android:id="@+id/progress"
+                  android:title="@string/progress_button" />
+        </menu>
+    
+    </item>
+
+</menu>

@@ -3,6 +3,7 @@ package com.jas.devotional;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,6 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class LearningActivity  extends FragmentActivity implements ActionBar.TabListener{
 	
@@ -22,10 +25,13 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_learning);
 		mLearningPagerAdapter = new LearningPagerAdapter(getSupportFragmentManager());
 		final ActionBar actionBar  = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayHomeAsUpEnabled(false );
+		
+		
 		// Specify that we will be displaying tabs in the action bar.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -109,8 +115,45 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 	        }
 	    }
 	
-	
-	
+	    @Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			// Inflate the menu; this adds items to the action bar if it is present.
+			getMenuInflater().inflate(R.menu.learning_menu, menu);
+			 return super.onCreateOptionsMenu(menu);
+		}
+	    
+	    
+	    @Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+			switch (item.getItemId()) {
+			case R.id.menu_item_share:
+
+				Intent i = new Intent(this, ChannelListActivity.class);
+
+				startActivity(i);
+				return true;
+			case R.id.donate:
+				
+
+				startActivity( new Intent(this, ChannelListActivity.class));
+				return true;
+			case R.id.classmates:
+				
+
+				startActivity( new Intent(this, ChannelListActivity.class));
+				return true;
+			case R.id.progress:
+				
+
+				startActivity( new Intent(this, ChannelListActivity.class));
+				return true;
+				
+			
+			default:
+				return super.onOptionsItemSelected(item);
+			}
+		}
+
 
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {

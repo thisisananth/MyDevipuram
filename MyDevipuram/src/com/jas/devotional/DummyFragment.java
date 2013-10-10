@@ -14,8 +14,7 @@ public class DummyFragment extends Fragment {
 		
 		Log.d(Constants.DEVICE_DEBUG_APP_CODE,"In onCreateView of the DummyFragment");
 		View v = inflater.inflate(R.layout.fragment_dummy, vg,false);
-		TextView tv = (TextView) v.findViewById(R.id.textView1);
-		tv.setText("This is a dummy text");
+		
 		return v;
 		
 	}
