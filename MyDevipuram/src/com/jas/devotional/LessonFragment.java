@@ -9,23 +9,18 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.TextView;
 
-public class LessonFragment extends Fragment {
+public class LessonFragment extends Fragment  {
 
 	private static int currentLesson = 1;
 
 	private MediaPlayer mediaPlayer;
-	private MediaController mediaController;
-	private String audioFile;
+	
 
 	@TargetApi(11)
 	@Override
@@ -61,6 +56,7 @@ public class LessonFragment extends Fragment {
 								R.raw.guruwheel);
 						mediaPlayer.start(); // no need to call prepare();
 												// create() does that for you
+						
 						play.setBackgroundResource(R.drawable.pause_btn);
 
 					} else if (mediaPlayer.isPlaying()) {
@@ -91,7 +87,7 @@ public class LessonFragment extends Fragment {
 					Intent videoIntent = new Intent(getActivity(),
 							VideoPlayerActivity.class);
 
-					videoIntent.putExtra("videoFileName", "gurunamavali");
+					videoIntent.putExtra("videoFileName", "phonetics");
 					startActivity(videoIntent);
 				} else {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Showing alert.");

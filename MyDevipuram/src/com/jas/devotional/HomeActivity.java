@@ -80,7 +80,7 @@ public class HomeActivity extends Activity {
 	public void playVideo(View v) {
 
 		Intent i = new Intent(this, VideoPlayerActivity.class);
-		i.putExtra("videoFileName", "gurunamavali");
+		i.putExtra("videoFileName", "phonetics");
 		startActivity(i);
 	
 
