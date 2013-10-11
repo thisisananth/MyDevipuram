@@ -181,7 +181,16 @@ public class LessonFragment extends Fragment  {
 	}
 
 	
-	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+			mediaPlayer.stop();
+			
+		}
+		
+		super.onPause();
+	}
 	    
 	    
 	  
