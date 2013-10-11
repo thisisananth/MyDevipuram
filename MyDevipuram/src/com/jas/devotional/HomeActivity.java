@@ -3,11 +3,13 @@ package com.jas.devotional;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ooyala.android.OoyalaPlayer;
 import com.ooyala.android.OoyalaPlayerLayout;
@@ -24,6 +26,17 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Loading home screen");
+		
+		
+		Typeface regularFace = Typeface.createFromAsset(
+				HomeActivity.this.getAssets(), "fonts/Roboto-Regular.ttf");
+		Typeface boldFace = Typeface.createFromAsset(
+				HomeActivity.this.getAssets(), "fonts/Roboto-Bold.ttf");
+		Typeface lightFace = Typeface.createFromAsset(
+				HomeActivity.this.getAssets(), "fonts/Roboto-Light.ttf");
+		
+		TextView lessonTitle = (TextView) findViewById(R.id.lesson_title);
+		lessonTitle.setTypeface(lightFace);
 
 		// Set the default video
 		/*

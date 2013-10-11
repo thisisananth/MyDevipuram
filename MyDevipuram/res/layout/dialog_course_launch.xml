@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content" 
+    android:layout_gravity="center"
+    android:background="@drawable/bgdialog"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/dialog_cl_title"
+        android:textColor="@color/titlebackgroundcolor"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <ImageView 
+        android:id="@+id/horiLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hori_line"
+       	android:layout_below="@id/dialogTitle"
+       	android:paddingTop="10dp"
+        android:contentDescription="dialog"/>
+
+        <TextView
+            android:id="@+id/dialogContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horiLine"
+           android:paddingTop="10dp"
+            android:gravity="center"
+            android:text="@string/dialog_cl_message"
+            android:textColor="@color/dialogTextColor"
+            android:textSize="15sp" />
+    
+    <Button
+        android:id="@+id/btn_gotit"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialogContent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/okay_subscribe_btn_bg"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:textColor="@color/titlebackgroundcolor"
+        android:text="@string/got_it" />
+
+</RelativeLayout>

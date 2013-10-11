@@ -28,7 +28,10 @@
         
     </style>
     
-    
+    <style name="Theme_Dialog" parent="android:Theme.Light">
+     <item name="android:windowNoTitle">true</item>
+     <item name="android:windowBackground">@android:color/white</item>
+	</style>
     
   
 
@@ -48,6 +51,7 @@
    <color name="actionBarTextColor">#FFFFFF</color>
     <color name="lessonTextColor">#CCCCCC</color>
      <color name="pageCounterTextColor">#262626</color>
+     <color name="dialogTextColor">#696C73</color>
    
 
 </resources>

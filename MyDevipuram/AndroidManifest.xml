@@ -72,7 +72,7 @@
          
      </activity>
      
-      <activity android:name="CourseLaunchActivity" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden">
+      <activity android:name="CourseLaunchActivity" android:theme="@style/customTheme" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden">
         
        
      </activity>
