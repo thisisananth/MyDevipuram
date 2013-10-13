@@ -78,6 +78,11 @@
        
      </activity>
         
+      <activity android:name="ActivityUnderConstruction" android:theme="@style/customTheme" android:screenOrientation="portrait" android:configChanges="orientation|keyboardHidden">
+        
+       
+     </activity>
+        
     
     </application>
 

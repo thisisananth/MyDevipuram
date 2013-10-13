@@ -128,24 +128,24 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 			switch (item.getItemId()) {
 			case R.id.menu_item_share:
 
-				Intent i = new Intent(this, ChannelListActivity.class);
+				Intent i = new Intent(this, ActivityUnderConstruction.class);
 
 				startActivity(i);
 				return true;
 			case R.id.donate:
 				
 
-				startActivity( new Intent(this, ChannelListActivity.class));
+				startActivity( new Intent(this, ActivityUnderConstruction.class));
 				return true;
 			case R.id.classmates:
 				
 
-				startActivity( new Intent(this, ChannelListActivity.class));
+				startActivity( new Intent(this, ActivityUnderConstruction.class));
 				return true;
 			case R.id.progress:
 				
 
-				startActivity( new Intent(this, ChannelListActivity.class));
+				startActivity( new Intent(this, ActivityUnderConstruction.class));
 				return true;
 				
 			
