@@ -2,6 +2,7 @@ package com.jas.devotional;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -10,17 +11,19 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LessonFragment extends Fragment  {
+public class LessonFragment extends Fragment implements OnClickListener {
 
 	private static int currentLesson = 1;
 
 	private MediaPlayer mediaPlayer;
-	
+	 Dialog dialog;
+	  Button btnGotIt;
 
 	@TargetApi(11)
 	@Override
@@ -53,7 +56,7 @@ public class LessonFragment extends Fragment  {
 					if (mediaPlayer == null) {
 						mediaPlayer = MediaPlayer.create(
 								LessonFragment.this.getActivity(),
-								R.raw.guruwheel);
+								R.raw.khadgamala);
 						mediaPlayer.start(); // no need to call prepare();
 												// create() does that for you
 						
@@ -92,28 +95,7 @@ public class LessonFragment extends Fragment  {
 				} else {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Showing alert.");
 
-					// 1. Instantiate an AlertDialog.Builder with its
-					// constructor
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							getActivity());
-
-					// Add the buttons
-					builder.setPositiveButton(R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									// User clicked OK button
-								}
-							});
-					// 2. Chain together various setter methods to set the
-					// dialog characteristics
-					String message = getString(R.string.dialog_message,
-							currentLesson - 1, currentLesson);
-					builder.setMessage(message).setTitle(R.string.dialog_title);
-
-					// 3. Get the AlertDialog from create()
-					AlertDialog dialog = builder.create();
-					dialog.show();
+				showCustomDialog();
 
 				}
 
@@ -191,6 +173,52 @@ public class LessonFragment extends Fragment  {
 		
 		super.onPause();
 	}
+
+	protected void showCustomDialog() {
+
+  		dialog = new Dialog(LessonFragment.this.getActivity(),
+  				android.R.style.Theme_DeviceDefault_Dialog);
+  		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+  		dialog.setCancelable(true);
+  		dialog.setContentView(R.layout.dialog_course_launch);
+  		
+  		TextView dialogTitle = (TextView) dialog.findViewById(R.id.dialogTitle);
+  		dialogTitle.setText(R.string.dialog_title);
+  		TextView dialogContent = (TextView) dialog.findViewById(R.id.dialogContent);
+  		
+  		String message = getString(R.string.dialog_message,
+				currentLesson - 1, currentLesson);
+  		dialogContent.setText(message);
+  		
+  		
+  		
+  		btnGotIt = (Button) dialog.findViewById(R.id.btn_gotit);
+  		btnGotIt.setText(R.string.net_down_dialog_confirm);
+  		btnGotIt.setOnClickListener(this);
+
+  		
+
+  		dialog.show();
+  	}
+    
+      
+      @Override
+  	public void onClick(View v) {
+  		// TODO Auto-generated method stub
+  		
+  		switch (v.getId()) {
+  		case R.id.btn_gotit:
+  			dialog.dismiss();
+  			break;
+  		default:
+  			break;
+  		}
+      }
+	
+	
+	
+	
 	    
 	    
 	  

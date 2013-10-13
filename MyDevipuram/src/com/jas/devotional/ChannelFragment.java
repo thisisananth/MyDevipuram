@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.NavUtils;
@@ -15,8 +19,12 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 import com.ooyala.android.Channel;
 import com.ooyala.android.ContentItem;
@@ -28,7 +36,7 @@ import com.ooyala.android.Video;
 
 
 
-public class ChannelFragment extends ListFragment implements OnItemClickListener {
+public class ChannelFragment extends ListFragment implements OnItemClickListener,OnClickListener {
 	
 
 	  public static final String PCODE = Constants.PARTNER_CODE;
@@ -36,7 +44,8 @@ public class ChannelFragment extends ListFragment implements OnItemClickListener
 	  public static final String SECRETKEY = Constants.API_SECRET;
 	  public static final String PLAYERDOMAIN = "www.ooyala.com";
 
-	   
+	  Dialog dialog;
+	  Button btnGotIt;
 	
 	  public static OoyalaAPIClient api = new OoyalaAPIClient(APIKEY, SECRETKEY, PCODE, PLAYERDOMAIN);
 
@@ -115,8 +124,12 @@ public class ChannelFragment extends ListFragment implements OnItemClickListener
        }
         
       
+       if(isNetworkAvailable()){
+    	   api.contentTree(Arrays.asList(embedCodes), new MyContentTreeCallback(this));
+       }else{
+    	   showCustomDialog();
+       }
         
-        api.contentTree(Arrays.asList(embedCodes), new MyContentTreeCallback(this));
 
 }
 	
@@ -191,7 +204,56 @@ public class ChannelFragment extends ListFragment implements OnItemClickListener
       private String timeStringFromMillis(int millis, boolean includeHours) {
     	    return DateUtils.formatElapsedTime(millis / 1000);
     	  }
+      
+      
+      
+      private boolean isNetworkAvailable() {
+    	    ConnectivityManager connectivityManager 
+    	          = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+    	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    	}
+      
+      
+      protected void showCustomDialog() {
+
+  		dialog = new Dialog(ChannelFragment.this.getActivity(),
+  				android.R.style.Theme_DeviceDefault_Dialog);
+  		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+  		dialog.setCancelable(true);
+  		dialog.setContentView(R.layout.dialog_course_launch);
+  		
+  		TextView dialogTitle = (TextView) dialog.findViewById(R.id.dialogTitle);
+  		dialogTitle.setText(R.string.net_down_dialog_title);
+  		TextView dialogContent = (TextView) dialog.findViewById(R.id.dialogContent);
+  		dialogContent.setText(R.string.net_down_dialog_content);
+  		
+  		
+  		
+  		btnGotIt = (Button) dialog.findViewById(R.id.btn_gotit);
+  		btnGotIt.setText(R.string.net_down_dialog_confirm);
+  		btnGotIt.setOnClickListener(this);
+
+  		
+
+  		dialog.show();
+  	}
     
+      
+      @Override
+  	public void onClick(View v) {
+  		// TODO Auto-generated method stub
+  		
+  		switch (v.getId()) {
+  		case R.id.btn_gotit:
+  			Intent i = new Intent(getActivity(), HomeActivity.class);
+  			startActivity(i);
+  			break;
+  		default:
+  			break;
+  		}
+      }
 }
 
 

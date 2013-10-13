@@ -44,6 +44,10 @@
     <string name="notify_title">SriVidya</string> 
     <string name="notify_text">Lesson #1 of Srividya course is downloaded for you. Click here to take your lesson.</string>  
     <string name="previous">Previous</string>  
-    <string name="next">Next</string>     
+    <string name="next">Next</string>    
+    
+    <string name="net_down_dialog_title">Alert</string> 
+    <string name="net_down_dialog_content">It seems internet is not available. Please enable it and try again.</string> 
+    <string name="net_down_dialog_confirm">OK!</string>  
     
 </resources>
