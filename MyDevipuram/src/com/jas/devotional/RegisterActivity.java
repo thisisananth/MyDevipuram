@@ -3,8 +3,10 @@ package com.jas.devotional;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.InvalidObjectException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
@@ -104,22 +106,28 @@ public class RegisterActivity extends Activity implements ValidationListener {
 		try {
 			json = t.get();
 			
-			JSONObject jObject = new JSONObject(json);
-			 JSONObject status = jObject.getJSONObject("Status");
-			    int statusCode = status.getInt("Code");
-			    if(statusCode == 200){
-			    	JSONObject data = jObject.getJSONObject("Data");
-			    	long userId = data.getLong("UserId");
-			    	//save user id in prefs
-			    	Toast.makeText(this, "Registration Successful, please login", Toast.LENGTH_LONG).show();
-			    	Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-					
-					startActivity(i);
-			    }else{
-			    	JSONObject error = status.getJSONObject("Errors");
-			    	String errorMessage = error.getString("Description");
-			    	Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
-			    }
+			if(json!=null && !json.equals("NO_INTERNET")){
+				JSONObject jObject = new JSONObject(json);
+				 JSONObject status = jObject.getJSONObject("Status");
+				    int statusCode = status.getInt("Code");
+				    if(statusCode == 200){
+				    	JSONObject data = jObject.getJSONObject("Data");
+				    	long userId = data.getLong("UserId");
+				    	//save user id in prefs
+				    	Toast.makeText(this, "Registration Successful, please login", Toast.LENGTH_LONG).show();
+				    	Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+						
+						startActivity(i);
+				    }else{
+				    	JSONObject error = status.getJSONObject("Errors");
+				    	String errorMessage = error.getString("Description");
+				    	Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+				    }
+			}else{
+				Toast.makeText(this, "Internet not available. Please check your connection and try again.", Toast.LENGTH_LONG).show();
+			}
+			
+			
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -168,11 +176,13 @@ public class RegisterActivity extends Activity implements ValidationListener {
 		private String json = "";
 
 		@Override
-		protected String doInBackground(Void...voids) {
+		protected String doInBackground(Void...voids)  {
 			// TODO Auto-generated method stub
 			
 			HttpClient client = new DefaultHttpClient();  
-		    HttpPost post = new HttpPost("http://ec2-54-200-201-61.us-west-2.compute.amazonaws.com:8080/DPServices/services/users/create");   
+		    //HttpPost post = new HttpPost("http://ec2-54-200-201-61.us-west-2.compute.amazonaws.com:8080/DPServices/services/users/create"); 
+			
+			HttpPost post = new HttpPost("http://10.0.0.2:8080/DPServices/services/users/create"); 
 		    post.setHeader("Content-type", "application/json");
 		    post.setHeader("Accept", "application/json");
 		    JSONObject obj = new JSONObject();
@@ -198,7 +208,10 @@ public class RegisterActivity extends Activity implements ValidationListener {
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
+			}catch(UnknownHostException e){
+				json = "NO_INTERNET";
+			}
+		    catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
