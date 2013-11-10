@@ -129,7 +129,7 @@ private class LoginTask extends AsyncTask<Void, Void, String> {
 			HttpClient client = new DefaultHttpClient();  
 		    //HttpPost post = new HttpPost("http://ec2-54-200-201-61.us-west-2.compute.amazonaws.com:8080/DPServices/services/users/create"); 
 			
-			HttpPost post = new HttpPost("http://10.0.0.2:8080/DPServices/services/users/login"); 
+			HttpPost post = new HttpPost(Constants.WS_URL+"/users/login"); 
 		    post.setHeader("Content-type", "application/json");
 		    post.setHeader("Accept", "application/json");
 		    JSONObject obj = new JSONObject();

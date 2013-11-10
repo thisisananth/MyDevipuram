@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -19,6 +20,8 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 
 	 LearningPagerAdapter mLearningPagerAdapter;
 	 ViewPager mViewPager;
+	 
+	
 	
 	
 	@Override
@@ -67,6 +70,9 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 	     * sections of the app.
 	     */
 	    public static class LearningPagerAdapter extends FragmentPagerAdapter {
+	    	
+	    	 LessonFragment mLessonFragment;
+	    	 DummyFragment mDummyFragment;
 
 	        public LearningPagerAdapter(FragmentManager fm) {
 	            super(fm);
@@ -74,18 +80,24 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 
 	        @Override
 	        public Fragment getItem(int i) {
-	        	Fragment f;
+	        	
 	        	switch(i){
-	        	case 0:
-	        		 f = new LessonFragment();
-	        		 return f;
+	        	case 0:{
+	        		if(mLessonFragment==null){
+	        			mLessonFragment = new LessonFragment();
+	        		}
+	        		return mLessonFragment;
+	        	}
+	        	 default:{
+	        		if(mDummyFragment==null){
+	        			mDummyFragment = new DummyFragment();
+	        		}
+	        		return mDummyFragment;
 	        		
-	        	 default:
-	        		 f = new DummyFragment();
-	        		
+	        	 }
 	        	}
 	        		
-	        	return f; 
+	        	
 	        }
 
 	        @Override
@@ -173,5 +185,25 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		Log.d(Constants.DEVICE_DEBUG_APP_CODE, "back pressed");
+		LessonFragment lessonFragment = (LessonFragment) mLearningPagerAdapter.getItem(0);
+		MediaPlayer mPlayer = lessonFragment.getMediaPlayer();
+		if(mPlayer!=null){
+			if(mPlayer.isPlaying()){
+				mPlayer.stop();
+			}
+			mPlayer.release();
+			lessonFragment.setMediaPlayer(null);
+			
+		}
+		
+		super.onBackPressed();
+	}
+	
 
 }

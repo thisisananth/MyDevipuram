@@ -92,7 +92,7 @@ private class AuditTask extends AsyncTask<Void, Void, String> {
 			HttpClient client = new DefaultHttpClient();  
 		    //HttpPost post = new HttpPost("http://ec2-54-200-201-61.us-west-2.compute.amazonaws.com:8080/DPServices/services/users/create"); 
 			
-			HttpGet get = new HttpGet("http://10.0.0.2:8080/DPServices/services/users/audit?userId="+userId+"&eventId=2"); //2 is login
+			HttpGet get = new HttpGet(Constants.WS_URL+"/users/audit?userId="+userId+"&eventId=2"); //2 is login
 		   // post.setHeader("Content-type", "application/json");
 		    get.setHeader("Accept", "application/json");
 		    JSONObject obj = new JSONObject();

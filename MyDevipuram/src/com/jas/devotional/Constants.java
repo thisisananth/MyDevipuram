@@ -14,5 +14,7 @@ public class Constants {
 	public static final String PARTNER_CODE = "l4aWsxOrJsQb5QTA3TSfyfKdI5Qb";
 	public static final String API_KEY="l4aWsxOrJsQb5QTA3TSfyfKdI5Qb.WaiZu";
 	public static final String API_SECRET="FndQ0Gx6Dfz6-5U6lpGYn553lEsVTK546pDQm3T4";
+	public static final String WS_URL="http://ec2-107-21-142-204.compute-1.amazonaws.com:8080/DPServices/services";
+	
 
 }
