@@ -42,6 +42,8 @@ public class LessonFragment extends Fragment implements OnClickListener {
 
 	private int currentPosition = 0;
 
+	long userId;
+
 	public MediaPlayer getMediaPlayer() {
 		return mediaPlayer;
 	}
@@ -51,6 +53,7 @@ public class LessonFragment extends Fragment implements OnClickListener {
 	}
 
 	Dialog dialog;
+	Button play;
 	Button btnGotIt;
 
 	@TargetApi(11)
@@ -72,13 +75,13 @@ public class LessonFragment extends Fragment implements OnClickListener {
 
 		SharedPreferences prefs = getActivity().getSharedPreferences(
 				"user_details", getActivity().MODE_PRIVATE);
-		final long userId = prefs.getLong("userId", -1);
+		userId = prefs.getLong("userId", -1);
 
 		Log.d(Constants.DEVICE_DEBUG_APP_CODE,
 				"Creating view of lessons screen...");
 		View v = inflater.inflate(R.layout.fragment_lessons, vg, false);
 
-		final Button play = (Button) v.findViewById(R.id.playPause);
+		play = (Button) v.findViewById(R.id.playPause);
 
 		if (mediaPlayer != null && mediaPlayer.isPlaying()) {
 			Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Setting pause button");
@@ -89,107 +92,31 @@ public class LessonFragment extends Fragment implements OnClickListener {
 		}
 
 		play.setOnClickListener(new OnClickListener() {
-
+			
 			@Override
 			public void onClick(View v) {
-
+				Log.d(Constants.DEVICE_DEBUG_APP_CODE, "clicked play/pause button");
 				if (currentLesson == 1) {
-					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
-							"Playing audio file...");
-					StringBuilder auditUri = new StringBuilder(Constants.WS_URL+
-							"/users/audit");
-					auditUri.append("?userId=" + userId);
-
-					final String tempUri = auditUri.toString();
-
-					if (mediaPlayer == null) {
-
-						mediaPlayer = MediaPlayer.create(
-								LessonFragment.this.getActivity(),
-								R.raw.khadgamala);
-						mediaPlayer.setWakeMode(getActivity(),
-								PowerManager.PARTIAL_WAKE_LOCK);
-						mediaPlayer
-								.setOnCompletionListener(new OnCompletionListener() {
-
-									public void onCompletion(MediaPlayer mp) {
-
-										Log.d(Constants.DEVICE_DEBUG_APP_CODE,
-												"Audio 1 playing completed");
-
-									
-										if (userId > 0) {
-											// Invoke the audit task
-											AuditTask t = (AuditTask) new AuditTask()
-													.execute(tempUri
-															+ "&eventId=5");
-											String json = "";
-
-											try {
-												json = t.get();
-											} catch (Exception e) {
-												e.printStackTrace();// ignore
-																	// audit
-																	// exception.
-											}
-										}
-
-									}
-								});
-						Log.d(Constants.DEVICE_DEBUG_APP_CODE,
-								"Playing audio 1");
-						if (userId > 0) {
-							// Invoke the audit task
-							AuditTask t = (AuditTask) new AuditTask()
-									.execute(tempUri + "&eventId=3");
-							String json = "";
-
-							try {
-								json = t.get();
-							} catch (Exception e) {
-								e.printStackTrace();// ignore audit exception.
-							}
-
-						}
-
-						mediaPlayer.start(); // no need to call prepare();
-												// create() does that for you
-
-						play.setBackgroundResource(R.drawable.pause_btn);
-
-					} else if (mediaPlayer.isPlaying()) {
-						mediaPlayer.pause();
-						play.setBackgroundResource(R.drawable.play_button);
-					} else if (!mediaPlayer.isPlaying()) {
-						mediaPlayer.start();
-						play.setBackgroundResource(R.drawable.pause_btn);
-
-					}
-
+					playAudio(currentLesson, R.raw.lesson01);
 				} else if (currentLesson == 2) {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
 							"Playing video file...");
-					if (mediaPlayer != null) {
+					/*if (mediaPlayer != null) {
 						if (mediaPlayer.isPlaying()) {
 							mediaPlayer.stop();
 						}
 
 						mediaPlayer.release();
 						mediaPlayer = null;
-					}
-
-					// Uri data =
-					// Uri.parse("android.resource://com.jas.devotional/"+R.raw.gupanishad);
-					// Intent i = new Intent(Intent.ACTION_VIEW);
-					// i.setDataAndType(data, "video/*");
-
-					// startActivity(i);
-
-					Intent videoIntent = new Intent(getActivity(),
-							VideoPlayerActivity.class);
-
-					videoIntent.putExtra("videoFileName", "phonetics");
-					startActivity(videoIntent);
+					}*/
+					playAudio(currentLesson,R.raw.khadgamala);
+					/*
+					 * Intent videoIntent = new Intent(getActivity(),
+					 * VideoPlayerActivity.class);
+					 * 
+					 * videoIntent.putExtra("videoFileName", "phonetics");
+					 * startActivity(videoIntent);
+					 */
 				} else {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Showing alert.");
 
@@ -217,10 +144,20 @@ public class LessonFragment extends Fragment implements OnClickListener {
 					pageCounter.setText(currentLesson + "/10");
 
 				}
-				if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-					mediaPlayer.pause();
+				if (mediaPlayer != null) {
+					if(mediaPlayer.isPlaying()){
+						mediaPlayer.pause();
+						mediaPlayer.stop();
+						mediaPlayer.release();
+					}else{
+						mediaPlayer.stop();
+						mediaPlayer.release();
+					}
+					
+					mediaPlayer=null;
 					play.setBackgroundResource(R.drawable.play_button);
 				}
+
 			}
 		});
 
@@ -242,8 +179,17 @@ public class LessonFragment extends Fragment implements OnClickListener {
 
 				}
 
-				if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-					mediaPlayer.pause();
+				if (mediaPlayer != null) {
+					if(mediaPlayer.isPlaying()){
+						mediaPlayer.pause();
+						mediaPlayer.stop();
+						mediaPlayer.release();
+					}else{
+						mediaPlayer.stop();
+						mediaPlayer.release();
+					}
+					
+					mediaPlayer=null;
 					play.setBackgroundResource(R.drawable.play_button);
 				}
 
@@ -369,6 +315,78 @@ public class LessonFragment extends Fragment implements OnClickListener {
 				e.printStackTrace();
 			}
 			return json;
+		}
+
+	}
+
+	private void playAudio(int lesson, int lessonResource) {
+
+		Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Playing audio file...");
+		StringBuilder auditUri = new StringBuilder(Constants.WS_URL
+				+ "/users/audit");
+		auditUri.append("?userId=" + userId);
+
+		final String tempUri = auditUri.toString();
+
+		if (mediaPlayer == null) {
+
+			mediaPlayer = MediaPlayer.create(LessonFragment.this.getActivity(),
+					lessonResource);
+			mediaPlayer.setWakeMode(getActivity(),
+					PowerManager.PARTIAL_WAKE_LOCK);
+			mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
+
+				public void onCompletion(MediaPlayer mp) {
+
+					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
+							"Audio 1 playing completed");
+
+					if (userId > 0) {
+						// Invoke the audit task
+						AuditTask t = (AuditTask) new AuditTask()
+								.execute(tempUri + "&eventId="+2*currentLesson+2);
+						String json = "";
+
+						try {
+							json = t.get();
+						} catch (Exception e) {
+							e.printStackTrace();// ignore
+												// audit
+												// exception.
+						}
+					}
+
+				}
+			});
+			Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Playing audio 1");
+			if (userId > 0) {
+				// Invoke the audit task
+				AuditTask t = (AuditTask) new AuditTask().execute(tempUri
+						+ "&eventId="+2*currentLesson+1);
+				String json = "";
+
+				try {
+					json = t.get();
+				} catch (Exception e) {
+					e.printStackTrace();// ignore audit exception.
+				}
+
+			}
+
+			mediaPlayer.start(); // no need to call prepare();
+									// create() does that for you
+
+			play.setBackgroundResource(R.drawable.pause_btn);
+
+		} else if (mediaPlayer.isPlaying()) {
+			Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Currently playing...setting to pause");
+			mediaPlayer.pause();
+			play.setBackgroundResource(R.drawable.play_button);
+		} else if (!mediaPlayer.isPlaying()) {
+			Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Currently Paused...setting to playing");
+			mediaPlayer.start();
+			play.setBackgroundResource(R.drawable.pause_btn);
+
 		}
 
 	}

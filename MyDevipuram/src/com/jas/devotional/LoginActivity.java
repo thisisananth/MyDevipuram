@@ -7,6 +7,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -135,7 +137,12 @@ private class LoginTask extends AsyncTask<Void, Void, String> {
 		    JSONObject obj = new JSONObject();
 		    try {
 				obj.put("email", emailEditText.getText().toString());
-				 obj.put("password", passwordEditText.getText().toString());
+				
+				String hash = new String(Hex.encodeHex(DigestUtils
+						.sha1(passwordEditText.getText().toString())));
+
+				obj.put("password", hash);
+				
 				    post.setEntity(new StringEntity(obj.toString(), "UTF-8"));
 				    HttpResponse response = client.execute(post); 
 				 HttpEntity e  = response.getEntity();
