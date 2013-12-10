@@ -340,11 +340,12 @@ public class LessonFragment extends Fragment implements OnClickListener {
 
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
 							"Audio 1 playing completed");
+					int eventId = (2*currentLesson)+2;
 
 					if (userId > 0) {
 						// Invoke the audit task
 						AuditTask t = (AuditTask) new AuditTask()
-								.execute(tempUri + "&eventId="+2*currentLesson+2);
+								.execute(tempUri + "&eventId="+eventId);
 						String json = "";
 
 						try {
@@ -358,11 +359,17 @@ public class LessonFragment extends Fragment implements OnClickListener {
 
 				}
 			});
-			Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Playing audio 1");
+			
 			if (userId > 0) {
+				Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Audit Url is : "+ tempUri);
+				
+				
+				int eventId  = (2*currentLesson)+1;
+				Log.d(Constants.DEVICE_DEBUG_APP_CODE,"Event Id is"+eventId);
+				
 				// Invoke the audit task
 				AuditTask t = (AuditTask) new AuditTask().execute(tempUri
-						+ "&eventId="+2*currentLesson+1);
+						+ "&eventId="+eventId);
 				String json = "";
 
 				try {

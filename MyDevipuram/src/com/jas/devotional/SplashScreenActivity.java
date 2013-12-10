@@ -104,6 +104,8 @@ private class AuditTask extends AsyncTask<Void, Void, String> {
 				 // Grab the response
 				    BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 				     json = reader.readLine();
+				     
+				     Log.d(Constants.DEVICE_DEBUG_APP_CODE, json);
 				    
 				   
 				   
