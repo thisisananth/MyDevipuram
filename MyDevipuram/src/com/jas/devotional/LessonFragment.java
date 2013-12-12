@@ -100,24 +100,17 @@ public class LessonFragment extends Fragment implements OnClickListener {
 					playAudio(currentLesson, R.raw.lesson01);
 				} else if (currentLesson == 2) {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
-							"Playing video file...");
-					/*if (mediaPlayer != null) {
-						if (mediaPlayer.isPlaying()) {
-							mediaPlayer.stop();
-						}
-
-						mediaPlayer.release();
-						mediaPlayer = null;
-					}*/
-					playAudio(currentLesson,R.raw.khadgamala);
-					/*
-					 * Intent videoIntent = new Intent(getActivity(),
-					 * VideoPlayerActivity.class);
-					 * 
-					 * videoIntent.putExtra("videoFileName", "phonetics");
-					 * startActivity(videoIntent);
-					 */
-				} else {
+							"Playing audio file 2...");
+			
+					playAudio(currentLesson,R.raw.lesson02);
+			
+				} else if(currentLesson == 3){
+					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
+							"Playing audio file 3...");
+			
+					playAudio(currentLesson,R.raw.lesson03);
+					
+				}else {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE, "Showing alert.");
 
 					showCustomDialog();
@@ -341,7 +334,8 @@ public class LessonFragment extends Fragment implements OnClickListener {
 					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
 							"Audio 1 playing completed");
 					int eventId = (2*currentLesson)+2;
-
+					Log.d(Constants.DEVICE_DEBUG_APP_CODE,
+							"Event Id is " + eventId);
 					if (userId > 0) {
 						// Invoke the audit task
 						AuditTask t = (AuditTask) new AuditTask()
