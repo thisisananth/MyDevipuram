@@ -89,10 +89,8 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 	        		return mLessonFragment;
 	        	}
 	        	 default:{
-	        		if(mDummyFragment==null){
-	        			mDummyFragment = new DummyFragment();
-	        		}
-	        		return mDummyFragment;
+	        		
+	        		return new DummyFragment();
 	        		
 	        	 }
 	        	}
