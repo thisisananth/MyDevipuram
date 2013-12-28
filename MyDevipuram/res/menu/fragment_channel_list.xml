@@ -25,5 +25,11 @@
     android:icon="@android:drawable/ic_menu_info_details"
     android:title="@string/logs"
     android:showAsAction="never"/>
+    
+    
+     <item android:id="@+id/menu_item_settings"
+    android:icon="@android:drawable/ic_menu_info_details"
+    android:title="@string/configure"
+    android:showAsAction="never"/>
 
 </menu>

@@ -80,6 +80,11 @@ public class HomeActivity extends Activity {
 		case R.id.menu_item_logs:
 			Intent i2 = new Intent(this, LogScrollActivity.class);
 			startActivity(i2);
+			
+		case R.id.menu_item_settings:
+			Intent i3 = new Intent(this, SettingsActivity.class);
+			startActivity(i3);
+		
 		default:
 			return super.onOptionsItemSelected(item);
 		}

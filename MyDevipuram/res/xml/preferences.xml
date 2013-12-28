@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+     <PreferenceCategory android:title="@string/pref_app_settings" >
+        <EditTextPreference
+                android:title="@string/pref_app_name"
+                android:summary="@string/pref_app_name_summary"
+                android:key="prefAppname"/>
+        <EditTextPreference
+                android:title="@string/pref_course_name"
+                android:summary="@string/pref_course_name_summary"
+                android:key="prefCoursename"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

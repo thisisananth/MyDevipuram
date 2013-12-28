@@ -51,5 +51,11 @@
     <string name="net_down_dialog_title">Alert</string> 
     <string name="net_down_dialog_content">It seems internet is not available. Please enable it and try again.</string> 
     <string name="net_down_dialog_confirm">OK!</string>  
-    
+     <string name="configure">Configure</string>  
+     <string name="pref_app_settings">App Configuration</string>
+      <string name="pref_app_name">App Name</string>
+	<string name="pref_app_name_summary">Configure what the app name should be</string>
+      <string name="pref_course_name">Course Name</string>
+      <string name="pref_course_name_summary">Configure what the course name should be</string>
+     
 </resources>
