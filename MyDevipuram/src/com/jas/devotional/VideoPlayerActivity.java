@@ -21,6 +21,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.MediaController;
@@ -42,6 +43,9 @@ public class VideoPlayerActivity extends Activity implements OnCompletionListene
 	       videoView.setOnCompletionListener(this);
 	        // mediaController.setAnchorView(videoView);
 	        videoView.setMediaController(mediaController);
+	        SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(this);
+			String title = prefs1.getString("prefAppname", getString(R.string.app_name));
+			setTitle(title);
 	        
 	        SharedPreferences prefs = getSharedPreferences(
 					"user_details", MODE_PRIVATE);

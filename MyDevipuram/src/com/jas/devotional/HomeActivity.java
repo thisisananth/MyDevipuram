@@ -2,9 +2,11 @@ package com.jas.devotional;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,9 +37,19 @@ public class HomeActivity extends Activity {
 		Typeface lightFace = Typeface.createFromAsset(
 				HomeActivity.this.getAssets(), "fonts/Roboto-Light.ttf");
 		
-		TextView lessonTitle = (TextView) findViewById(R.id.lesson_title);
+		TextView lessonTitle = (TextView) findViewById(R.id.course_subtitle);
 		lessonTitle.setTypeface(lightFace);
-
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		String title = prefs.getString("prefAppname", getString(R.string.app_name));
+		setTitle(title);
+		String courseName = prefs.getString("prefCoursename", getString(R.string.course_name));
+		TextView courseTitleView = (TextView) this.findViewById(R.id.courseTitle);
+		courseTitleView.setText(courseName);
+		String courseSubtitle = prefs.getString("prefCoursesubtitle", getString(R.string.course_subTitle));
+		TextView courseSubtitleView = (TextView) this.findViewById(R.id.course_subtitle);
+		courseSubtitleView.setText(courseSubtitle);
+		
 		// Set the default video
 		/*
 		 * playerLayout = (OoyalaPlayerLayout) findViewById(R.id.ooyalaPlayer);
@@ -80,10 +92,12 @@ public class HomeActivity extends Activity {
 		case R.id.menu_item_logs:
 			Intent i2 = new Intent(this, LogScrollActivity.class);
 			startActivity(i2);
+			return true;
 			
 		case R.id.menu_item_settings:
 			Intent i3 = new Intent(this, SettingsActivity.class);
 			startActivity(i3);
+			return true;
 		
 		default:
 			return super.onOptionsItemSelected(item);

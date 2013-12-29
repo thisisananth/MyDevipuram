@@ -101,14 +101,14 @@
          >
             
             <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/courseTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
            android:textColor="@color/titlebackgroundcolor"
             android:textStyle="bold"
             android:textSize="18sp"
             
-            android:text="@string/srividya" />
+            />
                <TextView
             android:id="@+id/textView4"
              android:textSize="18sp"
@@ -126,7 +126,7 @@
              android:layout_height="wrap_content" 
              android:layout_marginLeft="20dp">
              <TextView
-            android:id="@+id/lesson_title"
+            android:id="@+id/course_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -135,7 +135,7 @@
             android:textSize="18sp"
            
             
-            android:text="@string/course_title_1" />
+            android:text="@string/course_subTitle" />
              
              <Button 
                  android:id="@+id/launch_course"

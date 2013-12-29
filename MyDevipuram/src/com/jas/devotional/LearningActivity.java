@@ -4,8 +4,10 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -33,7 +35,10 @@ public class LearningActivity  extends FragmentActivity implements ActionBar.Tab
 		mLearningPagerAdapter = new LearningPagerAdapter(getSupportFragmentManager());
 		final ActionBar actionBar  = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(false );
-		
+		//Set the title from settings
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		String title = prefs.getString("prefAppname", getString(R.string.app_name));
+		setTitle(title);
 		
 		// Specify that we will be displaying tabs in the action bar.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

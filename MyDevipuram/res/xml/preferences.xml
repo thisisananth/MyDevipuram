@@ -9,6 +9,10 @@
                 android:title="@string/pref_course_name"
                 android:summary="@string/pref_course_name_summary"
                 android:key="prefCoursename"/>
+        <EditTextPreference
+                android:title="@string/pref_course_subtitle"
+                android:summary="@string/pref_course_subtitle_summary"
+                android:key="prefCoursesubtitle"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

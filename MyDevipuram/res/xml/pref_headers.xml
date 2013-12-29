@@ -4,7 +4,7 @@
  
 <header android:fragment="com.jas.devotional.SettingsActivity$PrefsFragment"
     android:icon="@android:drawable/ic_menu_sort_by_size"
-    android:title="Category 1 prefs" >
+    android:title="App Configuration" >
     <extra android:name="pref-resource" android:value="preferences" />
 </header>        
  

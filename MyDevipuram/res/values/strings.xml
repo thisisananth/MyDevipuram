@@ -5,13 +5,13 @@
     <string name="action_settings">Settings</string>
     
     <string name="image">Thumbnail</string>
-    <string name="srividya">Sri Vidya</string>
-     <string name="course_launch_course_title">Sri Vidya online course - Basic Level</string>
+    <string name="course_name">Sri Vidya</string>
+    
      
      <string name="course_title"> online course - Basic Level</string>
      <string name="featured_stories">Featured Stories</string>
      <string name="lesson_title">Message from Guruji</string>
-     <string name="course_title_1">Worship of Shakti</string>
+     <string name="course_subTitle">Worship of Shakti</string>
 	<string name="launch_course">Launch Course</string>
      
   <string name="channels">Channels</string>
@@ -43,8 +43,8 @@
    <string name="Course_demands_answer">Typically it takes not more than 30 mins/day for 3 weeks to gain through this course.</string>
    <string name="Course_instructions_answer">Video and audio lectures featuring your Guruji will be delivered to your app. Auxiliary reading material will be provided.</string>
    <string name="subscribe_button">Okay! Subscribe</string>     
-    <string name="notify_title">SriVidya</string> 
-    <string name="notify_text">Lesson #1 of Srividya course is downloaded for you. Click here to take your lesson.</string>  
+    <string name="notify_title">Primer</string> 
+    <string name="notify_text">Lesson #1 of %1$s course is downloaded for you. Click here to take your lesson.</string>  
     <string name="previous">Previous</string>  
     <string name="next">Next</string>    
     
@@ -54,8 +54,10 @@
      <string name="configure">Configure</string>  
      <string name="pref_app_settings">App Configuration</string>
       <string name="pref_app_name">App Name</string>
-	<string name="pref_app_name_summary">Configure what the app name should be</string>
+	<string name="pref_app_name_summary">click to set the app name</string>
       <string name="pref_course_name">Course Name</string>
-      <string name="pref_course_name_summary">Configure what the course name should be</string>
+      <string name="pref_course_name_summary">click to set the course name</string>
+      <string name="pref_course_subtitle">Course Subtitle</string>
+      <string name="pref_course_subtitle_summary">click to set the course subtitle</string>
      
 </resources>
